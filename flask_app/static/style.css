@@ -1,0 +1,27 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.container{
+    margin: 10px auto;
+    color: white;
+    width: 650px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.register{
+  background-color: #508bb2;
+  height: 500px;
+  width: 300px;
+  padding: 20px;
+}
+
+.login{
+  background-color: rgb(38, 47, 116);
+  height: 500px;
+  width: 300px;
+  padding: 20px;pyh
+}

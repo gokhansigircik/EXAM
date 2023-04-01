@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+  <title>Dashboard</title>
+</head>
+
+<body>
+  <div class="header">
+    <div>
+      <h1>Howdy,{{session.fname}}! </h1>
+    </div>
+    <div>
+      <button><a href="/show/all" style="color: black; padding: 10px; text-decoration: none;">Create a
+          Show</a></button>
+
+      <button style="background-color: red;"><a style="color: white; padding: 10px; text-decoration: none;"
+          href="/logout">LOGOUT</a></button>
+    </div>
+  </div>
+  <div class="subnav">
+    <div>
+      <h1>All TV Shows:</h1>
+    </div>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Network</th>
+        <th>Release Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for shows in results %}
+      <tr>
+        <td>{{ shows.title }}</td>
+        <td>{{ shows.network }}</td>
+        <td>{{ shows.release_date }}</td>
+        <td>
+          <a href="/shows/display/{{ shows.id }}">Show</a>
+          {% if session['uid'] == shows.owner.id %}
+          | <a href="/shows/edit/{{ shows.id }}">Edit</a>
+          | <a href="/shows/destroy/{{ shows.id }}">Delete</a>
+          {% endif %}
+
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
